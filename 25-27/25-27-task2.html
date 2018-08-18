@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<p class="con"></p>
+<script type="text/javascript">
+var con=document.querySelector(".con");
+
+function getMon(date,english){
+	//星期
+	if(english=="english"){
+		var arr=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+	}
+	else{var arr=["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];}
+	var day=arr[date.getDay()];
+	return day;
+}
+function add0(n){
+	//月，日，小时等出现个位数的情况前面补充0；
+     if(n<10){
+     	n="0"+n;
+     }
+     return n;
+}
+function Sdate(date){
+	//要求的日期格式
+	
+
+	var time=date.getFullYear()+"年"+add0(date.getMonth())+"月"+add0(date.getDay())+getMon(date)+add0(date.getHours())+":"+add0(date.getMinutes())+":"+add0(date.getSeconds());
+	
+	return time;
+}
+function Sdate(date,year,month,day,AmorPm){
+	var time=date.getFullYear()+year+add0(date.getMonth())+month+add0(date.getDay())+day+getMon(date)+add0(date.getHours())+":"+add0(date.getMinutes())+":"+add0(date.getSeconds())+AmorPm;
+	return time;
+}
+
+window.onload=function ce(){
+	var  date=new Date();
+	
+	con.innerHTML=Sdate(date,"年","月","日","")+"<br/>"+Sdate(date,"-","-","",(add0(date.getHours())>12?"PM":"AM"));
+	var t=setTimeout(ce,1000);
+}
+
+
+</script>
+</body>
+</html>

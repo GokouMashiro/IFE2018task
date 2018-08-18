@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <button id="a">A</button>
+    <button id="b">B</button>
+    <button id="c">C</button>
+    <div id="cont"></div>
+<script type="text/javascript">
+     var a=document.getElementById('a');
+     var b=document.getElementById('b');
+     var c=document.getElementById('c');
+     var cont=document.getElementById('cont');
+     function jiexihashandgetcanshu(argument) {
+          	var hs=window.location.hash;
+          	return hs;
+          }
+     function xuanran(){
+     	    var content=jiexihashandgetcanshu();
+     	    cont.innerHTML=content;
+     }
+     a.onclick=function(){
+            cont.innerHTML='A';
+     	    window.location.hash='#A';
+     }
+     b.onclick=function(){
+            cont.innerHTML='B';
+     	    window.location.hash='#B';
+     }
+     c.onclick=function(){
+            cont.innerHTML='C';
+     	    window.location.hash='#C';
+     }
+     window.onhashchange=xuanran();
+     window.open=xuanran();  
+
+</script>
+</body>
+</html>

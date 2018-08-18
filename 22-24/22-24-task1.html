@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<div>
+    <label>Number A:<input id="radio-a" type="radio" name="math-obj" value="a"></label><input id="num-a" type="text">
+    <label>Number B:<input id="radio-b" type="radio" name="math-obj" value="b"></label><input id="num-b" type="text">
+</div>
+<div class="btn-warp">
+    <button name="btn_1">判断当前选中的输入框输入内容是否为数字</button>
+    <button name="btn_2">把 A 四舍五入为 B 个小数位数的数字</button>
+    <button name="btn_3">当前选中数字的绝对值</button>
+    <button name="btn_4">对当前选中的数字进行上舍入</button>
+    <button name="btn_5">对当前选中的数字进行下舍入</button>
+    <button name="btn_6">把当前选中的数字四舍五入为最接近的整数</button>
+    <button name="btn_7">返回 A 和 B 中的最高值</button>
+    <button name="btn_8">返回 A 和 B 中的最低值</button>        
+</div>
+<p id="result"></p>
+<script type="text/javascript">
+var res=document.querySelector("#result");
+var warp=document.querySelector(".btn-warp");
+var radio_a=document.querySelector("#radio-a");
+var radio_b=document.querySelector("#radio-b");
+var num_a=document.querySelector("#num-a");
+var num_b=document.querySelector("#num-b");
+warp.onclick=function (e) {
+    // body...
+    if(radio_a.checked==true){
+        var Nowchecked=radio_a;
+        var num=num_a.value;
+    }
+    else if (radio_b.checked==true) {
+        var Nowchecked=radio_b;
+        var num=num_b.value;
+    }
+    function JudgeisNaN(){
+          if(isNaN(num)||(num==false)){
+            console.log("Is not a number");
+            return false;
+          }
+          else{
+            return true;
+          }
+    }
+    function JudgeAandBisNan() {
+        // body...
+        if ((num_a.value!=""||null)&&(num_b.value!=""||null)){
+            if((!isNaN(num_a.value))&&(!isNaN(num_b.value))){
+                return true;
+            }
+        }
+        else{
+            console.log("Is not a number");
+        }
+    }
+
+    switch(e.target.name){
+        case "btn_1":res.innerHTML=""+JudgeisNaN();
+
+                   ;break;
+        case "btn_2":if(JudgeAandBisNan()){
+            res.innerHTML=""+Number(num_a.value).toFixed(num_b.value);
+        }
+
+                   ;break;                   
+        case "btn_3":if (JudgeisNaN()){
+            res.innerHTML=""+Math.abs(num);
+        }
+        
+
+                   ;break;
+        case "btn_4":if(JudgeisNaN()){
+            res.innerHTML=""+Math.ceil(num);
+        }
+
+                   ;break;
+        case "btn_5":if(JudgeisNaN()){
+            res.innerHTML=""+Math.floor(num);
+        }
+
+                   ;break;
+        case "btn_6":if(JudgeisNaN()){
+            res.innerHTML=""+Math.round(num);
+        }
+
+                   ;break;                   
+        case "btn_7":if(JudgeAandBisNan()){
+            res.innerHTML=""+Math.max(num_a.value,num_b.value);
+        }
+
+                   ;break;
+        case "btn_8":if(JudgeAandBisNan()){
+            res.innerHTML=""+Math.min(num_a.value,num_b.value);
+        }
+
+                   ;break;
+        default:break;
+                              
+    }
+    
+}
+
+
+
+</script>
+</body>
+</html>

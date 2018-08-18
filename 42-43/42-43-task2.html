@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+class Restaurant {
+	constructor(obj) {
+        this.cash = obj.cash;
+	    this.seats = obj.seats;
+	    this.staff = obj.staff;    
+	}
+
+	hire(obj) {
+		return this.staff.push([obj.name,obj.pay]);
+	}
+
+	fire(obj) {
+        return this.staff.shift([obj.name,obj.pay]);
+	}
+}
+
+class Staff {
+	constructor(name,pay,id) {
+	    this.name=name;
+	    this.pay=pay;
+	    this.id=id;
+	}
+
+	work() {}
+}
+
+class Waiter extends Staff {
+	constructor(name,pay,id) {
+		super(name,pay,id);
+
+	}
+
+    work() {
+ 
+    }
+}
+
+class Cook extends Staff {
+	constructor(name,pay,id) {
+		super(name,pay,id);
+	}
+
+	work() {}
+}
+
+class Customer {
+	constructor() {
+	    this.order = function(){};
+        this.eat = function(){};
+    }
+}
+class Food {
+	constructor(name,cost,price) {
+	this.name = name;
+	this.cost = cost;
+	this.price = price;
+	}
+}
+
+
+</script>
+</body>
+</html>

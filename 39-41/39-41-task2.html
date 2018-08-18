@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<button id="a" onclick='btnhash(this)'>A</button>
+<button id="b" onclick='btnhash(this)'>B</button>
+<button id="c" onclick='btnhash(this)'>C</button>
+
+<button id="d" onclick='btnhash(this)'>D</button>
+<button id="e" onclick='btnhash(this)'>E</button>
+<button id="f" onclick='btnhash(this)'>F</button>
+
+
+<div id="contABC"></div>
+<div id="contDEF"></div>
+<script type="text/javascript">
+var a = document.getElementById('a');
+var b = document.getElementById('b');
+var c = document.getElementById('c');
+var d = document.getElementById('d');
+var e = document.getElementById('e');
+var f = document.getElementById('f');
+var contABC = document.getElementById('contABC');
+var contDEF = document.getElementById('contDEF');
+
+function xuanran(){
+	var content = window.location.hash;
+	if(content=='a'||'b'||'c'){
+        contABC.innerHTML=content;
+	}
+	else{
+        contDEF.innerHTML=content;
+	}
+}
+function btnhash(btn){
+    window.location.hash=btn.innerHTML;
+    if(btn.id='a'||'b'||'c'){
+        contABC.innerHTML=btn.innerHTML;
+    }
+    else{
+    	contDEF.innerHTML=btn.innerHTML;
+    }
+}
+window.onchangehash=xuanran();
+window.open=xuanran();
+
+
+
+
+</script>
+
+
+</body>
+</html>

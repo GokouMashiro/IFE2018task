@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script src="C:\Users\mashiro\Desktop\new\44-46-task.js"></script>
+<script type="text/javascript">
+var foodlist = [['a',10],['b',20],['c',30],['d',40],['e',50]];
+var Waiter=function(name){
+	this.name = name;
+}
+Waiter.prototype = {
+	
+    getcusfoodlist:function(cus){
+    	this.objcus=cus;
+        var food = cus.foodorder();
+        Coof.getInstance().cook(food);
+    },
+    serve:function(){
+    	console.log('上菜');
+        this.objcus.eat();
+    }
+    
+};
+Waiter.getInstance = (function(name) {
+	var instance;
+	return function(name){
+		if (!instance) {
+			instance = new Waiter(name);
+		}
+		return instance;
+	}
+})();
+
+var Coof = function(name){this.name = name;};
+Coof.prototype = {
+	cook:function(food){
+        console.log('做完菜');
+        Waiter.getInstance().serve();
+        
+	}
+};
+Coof.getInstance = (function(name) {
+	var instance;
+	return function(name){
+		if (!instance) {
+			instance = new Coof(name);
+		}
+		return instance;
+	}
+})();
+
+function Customer(foodlist){
+    this.foodlist = foodlist;
+}
+Customer.prototype = {
+	foodorder:function(){
+        var food=this.foodlist[parseInt(Math.random()*5)];
+        console.log('点菜');
+        return food;
+	},
+	eat:function(){
+		console.log('用餐');
+		console.log('下一个顾客进来');
+        var newcus=cusqueue.shift();
+        if (newcus) {
+        	Waiter.getInstance().getcusfoodlist(newcus);
+        }
+		
+	}
+};
+var xiaoli=Waiter.getInstance('xiaoli');
+var xiaohong=Coof.getInstance('xiaohong');
+var cusarr=[];cusarr.length=10;
+for (var i = 0; i < cusarr.length; i++) {
+    cusarr[i]=new Customer(foodlist);
+}
+var cusqueue = new Queue(cusarr,cusarr.length);
+
+
+
+
+
+
+
+
+
+
+	
+</script>
+
+</body>
+</html>

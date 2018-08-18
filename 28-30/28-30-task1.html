@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+<style type="text/css">
+.email-sug li{width: 200px;height: 20px;
+              border-left: 1px solid black;
+              border-right: 1px solid black;
+              border-bottom: 1px solid black;
+              list-style: none;
+              margin-left: -40px;
+
+              }
+#email-input{width: 198px;}
+.email-sug{ margin-top: 0px;}      
+.email-sug li:hover{background-color: pink;}
+</style>
+</head>
+<body>
+<div class="wrapper">
+    <input id="email-input" type="text">
+    <ul id="email-sug-wrapper" class="email-sug"></ul>
+</div>
+<script type="text/javascript">
+var postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
+var einput=document.querySelector("#email-input");
+var ulwrap=document.querySelector("#email-sug-wrapper");
+var trim;var arr;
+einput.onkeyup=function(e){
+	//如果按键不是上下及回车重置选中状态();
+	if(e.keyCode==38||e.keyCode==40||e.keyCode==13){
+		console.log(e.keyCode);
+		if(ulwrap.childNodes){
+			var Li=ulwrap.childNodes;
+			for (var i = 0; i < Li.length; i++) {
+				if(Li[i].style.backgroundColor=="blue"){
+                   Li[i].style.backgroundColor="";
+                   break;
+				}
+			}
+			if(e.keyCode==38){
+				if(i==0){
+					Li[Li.length-1].style.backgroundColor="blue";
+				}
+				else{
+                     Li[i-1].style.backgroundColor="blue";
+				}
+			}
+			if(e.keyCode==40){
+				if(i==Li.length-1){
+					Li[0].style.backgroundColor="blue";
+				}
+				else{
+					Li[i+1].style.backgroundColor="blue";
+				}
+			}
+			if(e.keyCode==13){
+                 
+     	         einput.value=Li[i].innerText;
+                 ulwrap.style.display="none";
+     	         
+			}
+		}
+       
+   }
+   else{
+  
+
+
+
+	arr=[];
+	getuserinput();
+	contofpromot();
+	addconttopromot();
+	controlpromotplay();
+}
+
+}
+function resetchecked(){
+	//重置选中状态
+  var Li=ulwrap.querySelectorAll("li");
+  for (var i = 0; i < LI.length; i++) {
+  	if(Li[i].style.backgroundColor="blue"){
+        if(i!=0){
+        	Li[i].style.backgroundColor="";
+        	Li[0].style.backgroundColor="blue";
+        	break;
+        }
+  	}
+  }
+}
+
+
+
+//function trims(str){
+	//去除字符串前后的空格
+ 
+//} 
+function getuserinput() {
+	// body...
+	//获取用户输入内容
+	 trim=einput.value;
+	//trims(trim);
+
+	return trim;
+}
+function contofpromot() {
+	// body...
+	//生成提示框中的提示内容
+	
+    var index=trim.indexOf("@");
+   
+    if(index!=-1){
+	//检查输入内是否有@
+	var laststr=trim.slice(index+1);
+     trim=trim.slice(0,index);
+
+     for (var i = 0; i < postfixList.length; i++) {
+     	//如果前缀匹配存在
+     	if(postfixList[i].indexOf(laststr)==0){
+          	var tex=trim+"@"+postfixList[i];
+
+          	arr.push(tex);
+     	}
+     }
+     if(!tex){ //如果前缀匹配不存在（不产生任何一个li）
+        for (var i = 0; i < postfixList.length; i++) {
+          	var tex=trim+"@"+postfixList[i];
+          	arr.push(tex);
+          }  
+     }
+ }
+    else{
+        for (var i = 0; i < postfixList.length; i++) {
+          	var tex=trim+"@"+postfixList[i];
+          	arr.push(tex);
+          }
+                	
+    }
+return arr;
+}
+function addconttopromot() {
+	// body...
+	// 将提示内容添加到ul中
+
+   if(ulwrap.childNodes.length!=0){
+	var len=ulwrap.childNodes.length;
+       for (var i = 0; i < len; i++) {
+       	ulwrap.removeChild(ulwrap.childNodes[0]);
+       }
+   }
+   	for (var i = 0; i < arr.length; i++) {
+		var newli=document.createElement("li");
+		newli.innerText=arr[i];
+		ulwrap.appendChild(newli);
+	}
+	ulwrap.childNodes[0].style.backgroundColor="blue";
+
+}
+function controlpromotplay() {
+	// body...
+	//控制ul的显示/隐藏状态
+	if(!trim){
+		ulwrap.style.display="none";
+	}
+	else{
+		ulwrap.style.display="block";
+	}
+}
+ulwrap.onclick=function(e){
+	//当监听到用户点击某一个提示li后，把Li对应的提示内容，放在输入框中，同时隐藏提示框
+     if(e.target.tagName=="LI"){
+     	var litext=e.target.innerText;
+     	einput.value=litext;
+     	ulwrap.style.display="none";
+     }
+
+
+}
+
+
+
+</script>
+</body>
+</html>

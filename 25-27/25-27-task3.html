@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<select id="year-select">
+    <option value="2000">2000</option>
+    <option value="2001">2001</option>
+    <option value="2002">2002</option>
+    <option value="2018">2018</option>
+    <option value="2032">2032</option>
+</select>
+
+<select id="month-select">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="6">6</option>
+    <option value="12">12</option>
+</select>
+
+<select id="day-select">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="4">4</option>
+    <option value="31">31</option>
+</select>
+
+<select id="hour-select">
+    <option value="0">00</option>
+    <option value="1">01</option>        
+    <option value="9">09</option>
+    <option value="23">23</option>
+</select>
+
+<select id="minite-select">
+    <option value="0">0</option>
+    <option value="1">1</option>
+    
+    <option>59</option>
+</select>
+
+<select id="second-select">
+    <option value="0">0</option>
+    <option value="1">1</option>
+    
+    <option>59</option>
+</select>
+
+<p id="result-wrapper"></p>
+<script type="text/javascript"> 
+var sel=document.querySelectorAll("select");
+var timecontent=document.querySelector("#result-wrapper");
+var year=document.querySelector("#year-select");
+var month=document.querySelector("#month-select");
+var dayt=document.querySelector("#day-select");
+var hour=document.querySelector("#hour-select");
+var minite=document.querySelector("#minite-select");
+var second=document.querySelector("#second-select");
+
+
+	// body
+
+
+function timeupdate(){
+   timecontent.innerHTML="现在距离"+settime()+comparetime();
+   var t=setTimeout(timeupdate,1000);
+}
+window.onload=timeupdate();
+function comparetime(){//天数相差计算
+	var date=new Date();
+	var nowday=date.getTime();
+	var nowhours=date.getHours();
+	var nowminite=date.getMinutes();
+	var nowseconds=date.getSeconds();
+
+	
+	var setday=new Date();
+	setday.setFullYear(getsetval(year),getsetval(month)-1,getsetval(dayt));
+	setday.setHours(getsetval(hour),getsetval(minite),getsetval(second));
+	setdays=setday.getTime();
+    var sethours=setday.getHours();
+	var setminite=setday.getMinutes();
+	var setseconds=setday.getSeconds();
+	var hours=nowhours-sethours;
+    var minites=nowminite-setminite;
+    var seconds=nowseconds-setseconds;
+    if(nowday>setdays){
+        var day=Math.floor((nowday-setdays)/(86400000));
+        var str="已经过去";
+            
+        	
+        
+
+    }
+    else {
+    	var day=Math.floor((setdays-nowday)/(86400000));
+    	var str="还有";
+    	 
+        
+    }
+    hours=Math.abs(hours);   
+    minites=Math.abs(minites);   
+    seconds=Math.abs(seconds);
+
+    var time=str+day+"天"+hours+"小时"+minites+"分"+seconds+"秒";
+return time;
+
+	
+}
+
+
+function getweek(){
+	var  dates=new Date();
+	dates.setFullYear(getsetval(year),getsetval(month)-1,getsetval(dayt));
+    var arr=["日","一","二","三","四","五","六"];
+	var week=arr[dates.getDay()];
+    return week;
+}
+function settime(){
+   var time=getsetval(year)+"年"+getsetval(month)+"月"+getsetval(dayt)+"日"+"星期"+getweek()+getsetval(hour)+":"+getsetval(minite)+":"+getsetval(second);
+   return time;
+}
+function getsetval(can){
+    var index=can.selectedIndex;
+    var val=can.options[index].text;
+    if(!val){
+    	val="00";
+    }
+
+    return val;
+}
+	for (var i = 0; i < sel.length; i++) {
+		sel[i].onchange=timeupdate();
+	}
+</script>
+
+</body>
+</html>

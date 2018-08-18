@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+function extend(Sub,Sup){
+	Sub.prototype=Object.create(Sup.prototype);
+	Sub.prototype.constructor=Sub;
+
+}
+function Restaurant(obj){
+	this.cash=obj.cash;
+	this.seats=obj.seats;
+	this.staff=obj.staff;
+}
+Restaurant.prototype={
+	hire:function(obj){
+		
+		this.staff.push([obj.name,obj.pay]);
+	},
+	fire:function(obj){
+
+		this.staff.shift([obj.name,obj.pay]);
+	}
+};
+function Staff(name,pay,id){
+	
+	this.name = name;
+	this.pay = pay;
+	this.id = id;
+}
+Staff.prototype={
+	work:function(){}
+};
+function Waiter(name,pay,id){
+    Staff.call(this,name,pay,id);
+}
+Waiter.prototype={
+	work:function(arguments){
+        if (arguments instanceof Array) {
+        	var menu=arguments;
+        	//记录客人点菜
+        }
+        else{
+            //上菜行为
+        }
+	}
+};
+extend(Waiter,Staff);
+function Cook(name,pay,id){
+	Staff.call(this,name,pay,id);
+}
+Cook.prototype={
+	work:function(){}
+};
+extend(Cook,Staff);
+function Customer(food){
+    this.order=function(){};
+    this.eat=function(){};
+}
+function Food(name,cost,price){
+	this.name=name;
+	this.cost=cost;
+	this.price=price;
+}
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

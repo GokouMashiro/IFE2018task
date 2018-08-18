@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title></title>
+</head>
+<body>
+<div id="region-radio-wrapper"></div>
+<div id="product-radio-wrapper"></div>
+
+
+<div id="table-wrapper">
+<table>
+<tbody id="tbodycont">
+
+</tbody>
+</table>
+</div>
+<button id="btn" type="submit" value="保存">保存</button>
+<button id="btndelete" type="submit" value="清除">清除</button>
+<script src="C:\Users\mashiro\Desktop\new\37-38task\37-38-1-task\ife31data.js"></script>
+<script type="text/javascript">
+var btn=document.getElementById('btn');
+var btndlt=document.getElementById('btndelete');
+var newdata=[];
+btn.onclick=function(){
+	var allinput=document.getElementsByName('forminput');
+	var m=0;
+    for (var i = 0; i < allinput.length; i++) {
+    	 if(i%14==0&&(i+14)<=allinput.length){
+    	 	var arr=[];
+    	 	for (var j = 0; j < 12; j++) {
+    	 		arr[j]=allinput[i+2+j].value;
+    	 	}
+    	 	//console.log(allinput);
+    	 	newdata[m]={product:allinput[i].value,
+                        region:allinput[i+1].value,
+                        sale:arr
+    	 		        };
+             m++;
+
+    	 }
+
+
+    	             
+    }
+    
+    localStorage.Data=JSON.stringify(newdata);
+    	 
+
+
+
+}
+btndlt.onclick=function(){
+	if (localStorage.Data) {
+		localStorage.removeItem('Data');
+		
+}
+}
+
+
+</script>
+<script src="C:\Users\mashiro\Desktop\new\37-38task\37-38-1-task\checkbox.js"></script>
+<script src="C:\Users\mashiro\Desktop\new\37-38task\37-38-1-task\getdata.js"></script>
+<script src="C:\Users\mashiro\Desktop\new\37-38task\37-38-1-task\table.js"></script>
+
+
+<script src="C:\Users\mashiro\Desktop\new\37-38task\37-38-1-task\app.js"></script>
+
+
+</body>
+</html>

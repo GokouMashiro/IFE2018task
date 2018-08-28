@@ -52,7 +52,7 @@ Coof.prototype = {
 		});
 		var p=new Promise(function(resolve,reject){
             for (var i = 0; i < sortarr.length; i++) {
-            	setTimeout(function(sortarr[i]){
+            	setTimeout(function(){
                     console.log(sortarr[i]+'已做好');
                     
             	})
@@ -131,6 +131,7 @@ function menutostr(arr,sign){
 var xiaoli=Waiter.getInstance('xiaoli');
 var xiaohong=Coof.getInstance('xiaohong');
 var cus=new Customer('xy');
+cus.foodorder(foodmenu).then(xiaoli.getcusmenu).then(xiaohong.cooking);
 //var cusarr=[];cusarr.length=10;
 //for (var i = 0; i < cusarr.length; i++) {
     //cusarr[i]=new Customer(foodlist);

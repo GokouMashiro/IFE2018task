@@ -42,7 +42,18 @@ Waiter.getInstance = (function(name) {
 		return instance;
 	}
 })();
-
+function arrcallback(arr,n){
+	
+    setTimeout(function(){
+    	
+    	console.log(arr[n]+' finished');
+    	
+    	n++;
+    	if(n<arr.length){
+    	arrcallback(arr,n);
+        }
+    },arr[n][2]*1000);
+}
 var Coof = function(name){this.name = name;};
 Coof.prototype = {
 	cooking:function(arr){
@@ -51,12 +62,9 @@ Coof.prototype = {
 			return obj1[2]-obj2[2];
 		});
 		var p=new Promise(function(resolve,reject){
-            for (var i = 0; i < sortarr.length; i++) {
-            	setTimeout(function(){
-                    console.log(sortarr[i]+'已做好');
-                    
-            	})
-            }
+                    arrcallback(sortarr,0); 
+            	
+            
 		});
 		
 	}

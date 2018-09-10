@@ -25,10 +25,14 @@ document.onclick=function(){
           		 e.tagName!='BUTTON'))||
           		((e.tagName=='INPUT')&&(e.className!='newsetinp')))
           		 {
+          		//console.log(e);
+          	    //console.log(Tdlist[i]);
                 Tdlist[j].innerHTML=Tdlist[j].childNodes[0].value;
           	}
           }
           if(num==2){
+          	
+          	
           	for (var k = 0; k < Tdlist.length; k++) {
           	if (Tdlist[k].childNodes[0].tagName=='INPUT') {
                  if (m!=k) {
@@ -41,7 +45,7 @@ document.onclick=function(){
           	}
            }
           }
- 
+         
 }
 
 Tbody.onclick=function(){
@@ -74,6 +78,7 @@ Tbody.onclick=function(){
          var content=e.childNodes[0].data;
          btncancelcont=content;
          //console.log(content);
+         e.innerHTML='';
          e.innerHTML="<input class='newsetinp' type='text' onblur='addinputjudge()' value="+content+"><input type='button' value='取消' onclick='cancel()'><input type='button' value='确认' onclick='confirm()' >";
          }
      }
@@ -90,27 +95,10 @@ function confirm(){
 
 
 
-Tbody.onmouseover=function(){
-     var e=event.target;
-     console.log(e);
-     if (e.tagName=='TD'&&(e.childNodes.length==1)){
-      var newspan=document.createElement('span');
-      newspan.innerHTML='编辑';
-      e.appendChild(newspan);
-     }
-}
 
-Tbody.onmouseout=function(){
-	var e=event.target;
-      if (e.tagName=='TD') {
-  if (e.childNodes[1]) {
-       if(e.childNodes[1].tagName=='SPAN'){
-      e.removeChild(e.childNodes[1]);
-    }
-   
-  }
-  }
-}
+
+
+
 
 function addinputjudge(){
     if(isNaN(event.target.value)){
@@ -119,9 +107,13 @@ function addinputjudge(){
     }
 }
 
+///*
 function addtdspan(fathernode,content){
    var newspan=document.createElement('span');
    newspan.setAttribute('style','font-size:8px;color:#D4D4D4;');
    newspan.innerHTML=content;
    fathernode.appendChild(newspan);
 }
+//*/
+
+
